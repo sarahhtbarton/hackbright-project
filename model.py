@@ -6,7 +6,6 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-
 class LetterInput(db.Model):
     """The day's Spelling Bee letters."""
 
@@ -23,12 +22,8 @@ class LetterInput(db.Model):
     # assoc = a list of LetterWordAssoc objects
 
     def __repr__(self):
-        return f'<LetterInput
-                letter_input_id={self.letter_input_id}
-                date={self.date}
-                required_letter={self.required_letter}
-                additional_letters={self.additional_letters}
-                >'
+        """Show info about LetterInput"""
+        return f'<LetterInput letter_input_id={self.letter_input_id} date={self.date} required_letter={self.required_letter} additional_letters={self.additional_letters}>'
 
 
 
@@ -52,11 +47,8 @@ class LetterWordAssoc(db.Model):
     worda = db.relationship('WordMasterlist', backref='assoc')
     
     def __repr__(self):
-        return f'<LetterWordAssoc
-                letterword_id={self.letterword_id}
-                letter_input_id={self.letter_input_id}
-                word_masterlist_id={self.word_masterlist_id}
-                >'
+        """Show info about LetterWordAssoc"""
+        return f'<LetterWordAssoc letterword_id={self.letterword_id} letter_input_id={self.letter_input_id} word_masterlist_id={self.word_masterlist_id}>'
 
 
 
@@ -76,10 +68,8 @@ class WordMasterlist(db.Model):
     # feedback = a list of WordFeedback objects
 
     def __repr__(self):
-        return f'<WordMasterList
-                word_masterlist_id={self.word_masterlist_id}
-                word={self.word}
-                >'
+        """Show info about WordMasterlist"""
+        return f'<WordMasterList word_masterlist_id={self.word_masterlist_id} word={self.word}>'
 
 
 class WordFeedback(db.Model):
@@ -101,12 +91,8 @@ class WordFeedback(db.Model):
     wordf = db.relationship('WordMasterlist', backref='feedback')
 
     def __repr__(self):
-        return f'<WordFeedback
-                word_feedback_id={self.word_feedback_id}
-                word_masterlist_id={self.word_masterlist_id}
-                is_blacklisted={self.is_blacklisted}
-                is_whitelisted={self.is_whitelisted}
-                >'
+        """Show info about WordFeedback"""
+        return f'<WordFeedback word_feedback_id={self.word_feedback_id} word_masterlist_id={self.word_masterlist_id} is_blacklisted={self.is_blacklisted} is_whitelisted={self.is_whitelisted}>'
 
 
 def connect_to_db(flask_app,
