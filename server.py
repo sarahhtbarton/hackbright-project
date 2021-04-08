@@ -28,6 +28,21 @@ def get_todays_letters():
     crud.create_letters(entry_date, required_letter, additional_letters)
 
 
+def get_word_feedback():
+    """Adds words to the whitelist or blacklist"""
+
+    wordf = request.form.get('word-feedback')
+
+    if request.form.get('feedback') == 'blacklisted':
+        is_blacklisted = True
+        is_whitelisted = False
+    else:
+        is_blacklisted = False
+        is_whitelisted = True
+
+    crud.create_listed(wordf, is_blacklisted, is_whitelisted)
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
