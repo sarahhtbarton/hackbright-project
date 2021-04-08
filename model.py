@@ -19,7 +19,7 @@ class LetterInput(db.Model):
     required_letter = db.Column(db.String(1))
     additional_letters = db.Column(db.String(6))
 
-    # assoc = a list of LetterWordAssoc objects
+    # association = a list of LetterWordAssoc objects
 
     def __repr__(self):
         """Show info about LetterInput"""
@@ -43,8 +43,8 @@ class LetterWordAssoc(db.Model):
                                    db.ForeignKey('word_masterlist.word_masterlist_id')
                                    )
     
-    letter = db.relationship('LetterInput', backref='assoc')
-    worda = db.relationship('WordMasterlist', backref='assoc')
+    letter = db.relationship('LetterInput', backref='assoctiation')
+    worda = db.relationship('WordMasterlist', backref='assoctiation')
     
     def __repr__(self):
         """Show info about LetterWordAssoc"""
@@ -64,7 +64,7 @@ class WordMasterlist(db.Model):
                                   )
     word = db.Column(db.String)
 
-    # assoc = a list of LetterWordAssoc objects
+    # association = a list of LetterWordAssoc objects
     # feedback = a list of WordFeedback objects
 
     def __repr__(self):
