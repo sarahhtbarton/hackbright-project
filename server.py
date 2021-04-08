@@ -1,11 +1,10 @@
 """Server for Spelling Bee Solver app."""
 
-from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
-import crud
-
 from jinja2 import StrictUndefined
+from datetime import date
+import crud
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -17,6 +16,16 @@ def homepage():
     """View homepage."""
 
     return render_template('homepage.html')
+
+
+def get_todays_letters():
+    """Creates an entry for today's Spelling Bee letters"""
+
+    entry_date = date.today()
+    required_letter = request.form.get('required-letter')
+    additional_letters = request.form.get('additional-letters')
+
+    crud.create_letters(entry_date, required_letter, additional_letters)
 
 
 if __name__ == '__main__':

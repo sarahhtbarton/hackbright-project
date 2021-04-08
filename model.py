@@ -15,7 +15,7 @@ class LetterInput(db.Model):
                                 autoincrement=True,
                                 primary_key=True
                                 )
-    date = db.Column(db.DateTime)
+    entry_date = db.Column(db.DateTime)
     required_letter = db.Column(db.String(1))
     additional_letters = db.Column(db.String(6))
 
@@ -23,7 +23,7 @@ class LetterInput(db.Model):
 
     def __repr__(self):
         """Show info about LetterInput"""
-        return f'<LetterInput letter_input_id={self.letter_input_id} date={self.date} required_letter={self.required_letter} additional_letters={self.additional_letters}>'
+        return f'<LetterInput letter_input_id={self.letter_input_id} entry_date={self.entry_date} required_letter={self.required_letter} additional_letters={self.additional_letters}>'
 
 
 
