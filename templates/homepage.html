@@ -5,6 +5,23 @@
 
 {% block head %}{% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+  <h1>Welcome to Spelling Bee Solver</h1>
+
+  <h2>Input today's letters here</h2>
+  <form id='get-letters'>
+    <p>
+      Required Letter <input type="text" name="required-letter">
+    </p>
+
+    <p>
+      Additional Letters <input type="text" name="additional-letters">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+{% endblock %}
 
 {% block after_body %}{% endblock %}
