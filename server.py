@@ -34,13 +34,27 @@ def get_word_feedback():
     wordf = request.form.get('word-feedback')
 
     if request.form.get('feedback') == 'blacklisted':
-        is_blacklisted = True
+        is_blacklisted = True #need return statements here?
         is_whitelisted = False
     else:
         is_blacklisted = False
         is_whitelisted = True
 
     crud.create_listed(wordf, is_blacklisted, is_whitelisted)
+
+def make_word_masterlist():
+    """Populates word_masterlist table from words_dictionary.json"""
+
+    with open('data/words_dictionary.json') as word_file:
+        valid_words = json.loads(word_file.read())
+    
+    word_list = list(valid_words)
+    for word in word_list:
+        if len(word) > 3:
+            return word
+            
+    
+    crud.create_word(word)
 
 
 if __name__ == '__main__':

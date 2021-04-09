@@ -17,20 +17,15 @@ def create_letters(entry_date, all_letters, required_letter):
 
 
 
-def create_word(word):
+def create_word(word): #how to do this??? here or seed_database.py?? or server.py??
     """Create and return a new word."""
     
-    # Load words from JSON file -- here or seed.py?
-    with open('data/words_dictionary.json') as word_file:
-        valid_words = json.loads(word_file.read())
-    
-    word_list = list(valid_words)
-    for word in word_list:
-        if len(word) > 3:
-            db.session.add(word)
-            db.session.commit()
+    word = WordMasterlist(word=word)
 
-    return word #not sure about this.....
+    db.session.add(word)
+    db.session.commit()
+
+    return word 
 
 
 

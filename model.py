@@ -16,7 +16,7 @@ class LetterInput(db.Model):
                                 primary_key=True
                                 )
     entry_date = db.Column(db.DateTime)
-    all_letters = db.Column(db.String(6))
+    all_letters = db.Column(db.String(7))
     required_letter = db.Column(db.String(1))
 
     # association = a list of LetterWordAssoc objects
@@ -69,7 +69,7 @@ class WordMasterlist(db.Model):
 
     def __repr__(self):
         """Show info about WordMasterlist"""
-        return f'<WordMasterList word_masterlist_id={self.word_masterlist_id} word={self.word}>'
+        return f'<WordMasterlist word_masterlist_id={self.word_masterlist_id} word={self.word}>'
 
 
 class WordFeedback(db.Model):
