@@ -1,11 +1,12 @@
 """CRUD operations."""
 
 from model import db, LetterInput, LetterWordAssoc, WordMasterlist, WordFeedback, connect_to_db
+import json #do i have that part here?
 
-def create_letters(date, required_letter, additional_letters):
+def create_letters(entry_date, required_letter, additional_letters):
     """Create and return the Spelling Bee letters for the day."""
 
-    letters = LetterInput(date=date, 
+    letters = LetterInput(entry_date=entry_date, 
                           required_letter=required_letter,
                           additional_letters=additional_letters)
     
@@ -18,13 +19,18 @@ def create_letters(date, required_letter, additional_letters):
 
 def create_word(word):
     """Create and return a new word."""
+    
+    # Load words from JSON file -- here or seed.py?
+    with open('data/words_dictionary.json') as word_file:
+        valid_words = json.loads(word_file.read())
+    
+    word_list = list(valid_words)
+    for word in word_list:
+        if len(word) > 3:
+            db.session.add(word)
+            db.session.commit()
 
-    word = WordMasterlist(word=word)
-
-    db.session.add(word)
-    db.session.commit()
-
-    return word
+    return word #not sure about this.....
 
 
 

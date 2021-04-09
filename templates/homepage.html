@@ -24,18 +24,16 @@
   </form>
 
   <h2>Did Solver miss any words today? Did Solver surface words Spelling Bee didn't accept?</h2> <!-- Revisit the copy...-->
-  <form id='get-letters'> <!-- is there a way to make radio buttons mandatory before clicking submit?-->
+  <form id="get-letters">
+    <input type="text" name="word-feedback" required>
     
-    <input type="text" name="word-feedback">
-    
-    <input type="radio" name="feedback" value="blacklisted">
+    <input type="radio" name="feedback" value="blacklisted" required> <!-- `required` makes radio button mandatory--> 
     <label>Blacklist</label>
     
     <input type="radio" name="feedback" value="whitelisted">
     <label>Whitelist</label> 
     
     <input type="submit">
-
   </form>
 
 {% endblock %}
