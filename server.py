@@ -22,10 +22,10 @@ def get_todays_letters():
     """Creates an entry for today's Spelling Bee letters"""
 
     entry_date = date.today()
+    all_letters = request.form.get('all-letters')
     required_letter = request.form.get('required-letter') #prob want to make sure all lowercase or uppercase
-    additional_letters = request.form.get('additional-letters')
 
-    crud.create_letters(entry_date, required_letter, additional_letters)
+    crud.create_letters(entry_date, all_letters, required_letter)
 
 
 def get_word_feedback():

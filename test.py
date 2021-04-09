@@ -1,4 +1,5 @@
 
+#additional letters !!!!MUST!!! include the required letter
 def test_middle_table_logic(required_letter, additional_letters, word_list):
 
     for word in word_list:
