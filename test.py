@@ -1,34 +1,37 @@
-$("input[type='radio']:checked").val();
-"blacklisted"
-$("input[type='radio']:checked").val();
-"whitelisted"
-$("input[type='radio']").is(":checked")
-true
-$('input[type=radio]').is(":checked")
-true
 
+def test_middle_table_logic(required_letter, additional_letters, word_list):
 
+    for word in word_list:
+        if (required_letter in word) and all(character in additional_letters for character in word):
+            print(word)
+    
+    # has_required_list = []
+    # for word in word_list:
+    #     if required_letter in word:
+    #         has_required_list.append(word)
 
-$("#get-letters").on("submit", (evt) => {
-    evt.preventDefault();
-    console.log("working");
-    if ($("input[type='radio']").is(":checked") === false) {
-        evt.preventDefault();
-        alert("You must select a radio button");
-    } else {
-        alert("We submitted your feedback");
-    }
-});
+    # print(has_required_list)
 
-$("#get-letters").on("submit", (evt) => {
-    evt.preventDefault();
-    console.log("working");
-    alert("An Alert Instead!");
-});
+    # for word in has_required_list:
+    #     if all(character in additional_letters for character in word):
+    #         print(word)
 
+# test_middle_table_logic('m', 'mibnadr', ['damn', 'brim', 'main', 'drama', 'bird', 'drain', 'helicopter', 'matinee', 'child'])
+# test_middle_table_logic('m', 'ibnadr', ['damn', 'brim', 'main', 'drama', 'bird', 'drain', 'helicopter', 'matinee', 'child'])
+    #works: 'damn', 'brim', 'main', 'drama'
+    #missing middle letter: 'bird', 'drain'
+    #too short: 
+    # wrong entirely: 'helicopter', 'matinee', 'child'
 
 
 
 
-for word ...
-  append word to div in html
+# for word ...
+#   append word to div in html
+
+def trying_all(word, additional_letters):
+    if all(character in additional_letters for character in word) == True:
+        print(word)
+
+# trying_all('matinee', 'mibnadr')
+# trying_all('damn', 'mibnadr')
