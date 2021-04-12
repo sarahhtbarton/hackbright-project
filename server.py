@@ -18,6 +18,21 @@ def homepage():
     return render_template('homepage.html')
 
 
+# this belongs in crud
+# def make_word_masterlist():
+#     """Populates word_masterlist table from words_dictionary.json"""
+
+#     with open('data/words_dictionary.json') as word_file:
+#         valid_words = json.loads(word_file.read())
+    
+#     word_list = list(valid_words)
+#     for word in word_list:
+#         if len(word) > 3:
+#             return word
+    
+#     crud.create_word(word)
+
+
 def get_todays_letters():
     """Creates an entry for today's Spelling Bee letters"""
 
@@ -31,30 +46,22 @@ def get_todays_letters():
 def get_word_feedback():
     """Adds words to the whitelist or blacklist"""
 
-    wordf = request.form.get('word-feedback')
+    word = request.form.get('word-feedback')
 
-    if request.form.get('feedback') == 'blacklisted':
-        is_blacklisted = True #need return statements here?
-        is_whitelisted = False
-    else:
-        is_blacklisted = False
-        is_whitelisted = True
-
-    crud.create_listed(wordf, is_blacklisted, is_whitelisted)
-
-def make_word_masterlist():
-    """Populates word_masterlist table from words_dictionary.json"""
-
-    with open('data/words_dictionary.json') as word_file:
-        valid_words = json.loads(word_file.read())
+    if request.form.get('feedback') == 'blacklisted': #is this right? test it out
+        blacklist_count = db.session.query(WordMasterlist.blacklist_count).filter(WordMasterlist.word == word).one()
+        blacklist_count = blacklist_count += 1
+        whitelist_count = db.session.query(WordMasterlist.whitelist_count).filter(WordMasterlist.word == word).one()
+        crud.create_word(word, blacklist_count, whitelist_count)
     
-    word_list = list(valid_words)
-    for word in word_list:
-        if len(word) > 3:
-            return word
-            
-    
-    crud.create_word(word)
+    if request.form.get('feedback') == 'whitelisted':
+        crud.create_word(word, 0, 0)
+
+
+
+def create_assoc_table():
+
+
 
 
 if __name__ == '__main__':

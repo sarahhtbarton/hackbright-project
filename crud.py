@@ -17,10 +17,12 @@ def create_letters(entry_date, all_letters, required_letter):
 
 
 
-def create_word(word): #how to do this??? here or seed_database.py?? or server.py??
-    """Create and return a new word."""
+def create_word(word, blacklist_count, whitelist_count):
+    """Create and return a new word, or mark word as whitelisted/blacklisted."""
     
-    word = WordMasterlist(word=word)
+    word = WordMasterlist(word=word,
+                          blacklist_count=blacklist_count,
+                          whitelist_count=whitelist_count)
 
     db.session.add(word)
     db.session.commit()
@@ -39,18 +41,6 @@ def create_assoc(letter, worda): #do you do this with association tables????
     db.session.commit()
 
     return assoc
-
-
-
-def create_listed(wordf, is_blacklisted, is_whitelisted): #do you put foreign keys up here? NO, but the variables you defined for the backref!
-    """Create and return a white or blacklisted word"""
-
-    listed = WordFeedback(wordf=wordf, is_blacklisted=is_blacklisted, is_whitelisted=is_whitelisted)
-    
-    db.session.add(listed)
-    db.session.commit()
-
-    return listed
 
 
 

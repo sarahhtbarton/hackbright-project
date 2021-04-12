@@ -63,36 +63,17 @@ class WordMasterlist(db.Model):
                                   primary_key=True
                                   )
     word = db.Column(db.String)
+    blacklist_count = db.Column(db.Integer,
+                                default=0)
+    whitelist_count = db.Column(db.Integer,
+                                default=0)
 
     # association = a list of LetterWordAssoc objects
-    # feedback = a list of WordFeedback objects
 
     def __repr__(self):
         """Show info about WordMasterlist"""
-        return f'<WordMasterlist word_masterlist_id={self.word_masterlist_id} word={self.word}>'
+        return f'<WordMasterlist word_masterlist_id={self.word_masterlist_id} word={self.word} blacklist_count={self.blacklist_count} whitelist_count={self.whitelist_count}>'
 
-
-class WordFeedback(db.Model):
-    """User input on words Solver said were valid but Spelling Bee said were not,
-       or visa versa"""
-    
-    __tablename__ = 'word_feedback'
-    
-    word_feedback_id = db.Column(db.Integer,
-                                 autoincrement=True,
-                                 primary_key=True
-                                 )
-    word_masterlist_id = db.Column(db.Integer,
-                                   db.ForeignKey('word_masterlist.word_masterlist_id')
-                                   )
-    is_blacklisted = db.Column(db.Boolean)
-    is_whitelisted = db.Column(db.Boolean)
-    
-    wordf = db.relationship('WordMasterlist', backref='feedback')
-
-    def __repr__(self):
-        """Show info about WordFeedback"""
-        return f'<WordFeedback word_feedback_id={self.word_feedback_id} word_masterlist_id={self.word_masterlist_id} is_blacklisted={self.is_blacklisted} is_whitelisted={self.is_whitelisted}>'
 
 
 def connect_to_db(flask_app,
