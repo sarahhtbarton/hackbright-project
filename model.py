@@ -39,6 +39,7 @@ class LetterWordAssoc(db.Model):
     word_masterlist_id = db.Column(db.Integer,
                                    db.ForeignKey('word_masterlist.word_masterlist_id'))
     
+    #cant create these directly with constructor function -- it creates these for you after you call the constructor function with the foreign keys
     letters_assoc = db.relationship('LetterInput', backref='association')
     words_assoc = db.relationship('WordMasterlist', backref='association')
     

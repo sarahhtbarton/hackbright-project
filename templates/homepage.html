@@ -9,12 +9,12 @@
   <h1>Welcome to Spelling Bee Solver</h1>
 
   <h2>Input today's letters here</h2>
-  <form id='get-letters'>
+  <form action="/ajax-create-letters" id='get-letters'>
     <p>
-      What are the 7 letters for today? <input type="text" name="all-letters">
+      What are the 7 letters for today? <input type="text" name="all-letters" maxlength="7">
     </p>
     <p>
-      Which letter is required? <input type="text" name="required-letter">
+      Which letter is required? <input type="text" name="required-letter" maxlength="1">
     </p>
     <p>
       <input type="submit">
@@ -37,6 +37,7 @@
     </p>
   </form>
 
+  <script src="/static/ajax_create_assoc.js"></script>
 {% endblock %}
 
 {% block after_body %}{% endblock %}
