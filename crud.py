@@ -26,11 +26,11 @@ def create_word(word, blacklist_count, whitelist_count):
     db.session.add(word)
     db.session.commit()
 
-    return word 
+    return word
 
 
 
-def create_assoc(letter_input_id, word_masterlist_id): #need to use the foreign keys, not the backref variable
+def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the foreign keys, not the backref variable
     """Create and return an association."""
 
     assoc = LetterWordAssoc(letter_input_id=letter_input_id,
@@ -40,6 +40,19 @@ def create_assoc(letter_input_id, word_masterlist_id): #need to use the foreign 
     db.session.commit()
 
     return assoc
+
+def create_assoc_logic(letters_record): #belongs in crud (anything that does database operations should live in crud)
+    "Creates an association table for today's valid words"
+    word_masterlist_objects = db.session.query(WordMasterlist).all()
+    #letter_input_object = db.session.query(LetterInput).filter_by(entry_date=date.today()).first() #is this how i want to do the letters? relies on proper user input...
+    #dont need this ^ because I passed it in as a parameter. Better because it gives me results from the actual input vs heuristics to get the input (.first)
+
+    for object in word_masterlist_objects:
+        if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
+            letter_input_id = letters_record.letter_input_id
+            word_masterlist_id = object.word_masterlist_id
+
+            create_assoc_table(letter_input_id, word_masterlist_id)
 
 
 
