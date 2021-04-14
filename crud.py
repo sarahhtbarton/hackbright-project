@@ -1,7 +1,6 @@
 """CRUD operations."""
 
-from model import db, LetterInput, LetterWordAssoc, WordMasterlist, WordFeedback, connect_to_db
-import json #do i have that part here?
+from model import db, LetterInput, LetterWordAssoc, WordMasterlist, connect_to_db
 
 def create_letters(entry_date, all_letters, required_letter):
     """Create and return the Spelling Bee letters for the day."""
@@ -31,11 +30,11 @@ def create_word(word, blacklist_count, whitelist_count):
 
 
 
-def create_assoc(letter, worda): #do you do this with association tables????
+def create_assoc(letter_input_id, word_masterlist_id): #need to use the foreign keys, not the backref variable
     """Create and return an association."""
 
-    assoc = LetterWordAssoc(letter=letter,
-                            worda=worda)
+    assoc = LetterWordAssoc(letter_input_id=letter_input_id,
+                            word_masterlist_id=word_masterlist_id)
     
     db.session.add(assoc)
     db.session.commit()
