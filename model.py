@@ -13,8 +13,7 @@ class LetterInput(db.Model):
 
     letter_input_id = db.Column(db.Integer,
                                 autoincrement=True,
-                                primary_key=True
-                                )
+                                primary_key=True)
     entry_date = db.Column(db.DateTime)
     all_letters = db.Column(db.String(7))
     required_letter = db.Column(db.String(1))
@@ -34,17 +33,14 @@ class LetterWordAssoc(db.Model):
 
     letterword_id = db.Column(db.Integer,
                               autoincrement=True,
-                              primary_key=True
-                              )
+                              primary_key=True)
     letter_input_id = db.Column(db.Integer, 
-                                db.ForeignKey('letter_input.letter_input_id')
-                                )
+                                db.ForeignKey('letter_input.letter_input_id'))
     word_masterlist_id = db.Column(db.Integer,
-                                   db.ForeignKey('word_masterlist.word_masterlist_id')
-                                   )
+                                   db.ForeignKey('word_masterlist.word_masterlist_id'))
     
-    letter = db.relationship('LetterInput', backref='assoctiation')
-    worda = db.relationship('WordMasterlist', backref='assoctiation')
+    letters_assoc = db.relationship('LetterInput', backref='association')
+    words_assoc = db.relationship('WordMasterlist', backref='association')
     
     def __repr__(self):
         """Show info about LetterWordAssoc"""
@@ -60,8 +56,7 @@ class WordMasterlist(db.Model):
     word_masterlist_id = db.Column(db.Integer,
                                   autoincrement=True,
                                   unique=True,
-                                  primary_key=True
-                                  )
+                                  primary_key=True)
     word = db.Column(db.String)
     blacklist_count = db.Column(db.Integer,
                                 default=0)

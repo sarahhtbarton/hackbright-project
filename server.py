@@ -1,7 +1,7 @@
 """Server for Spelling Bee Solver app."""
 
 from flask import (Flask, render_template, request, flash, session, redirect)
-from model import connect_to_db
+from model import connect_to_db, LetterInput, LetterWordAssoc, WordMasterlist #bringing in the classes so i can query them for assoc table creation
 from jinja2 import StrictUndefined
 from datetime import date
 import crud
@@ -43,24 +43,37 @@ def get_todays_letters():
     crud.create_letters(entry_date, all_letters, required_letter)
 
 
-def get_word_feedback():
-    """Adds words to the whitelist or blacklist"""
+# def get_word_feedback(): #have to import the classes from model.py??
+#     """Adds words to the whitelist or blacklist"""
 
-    word = request.form.get('word-feedback')
+#     word = request.form.get('word-feedback')
 
-    if request.form.get('feedback') == 'blacklisted': #is this right? test it out
-        blacklist_count = db.session.query(WordMasterlist.blacklist_count).filter(WordMasterlist.word == word).one()
-        blacklist_count = blacklist_count += 1
-        whitelist_count = db.session.query(WordMasterlist.whitelist_count).filter(WordMasterlist.word == word).one()
-        crud.create_word(word, blacklist_count, whitelist_count)
+#     if request.form.get('feedback') == 'blacklisted':
+#         #is this right? test it out
+#         blacklist_count = db.session.query(WordMasterlist).filter(WordMasterlist.word == word).one()
+#         blacklist_count += 1
+#         #do you need the next two lines or is the blacklist_count updated now?
+#         whitelist_count = db.session.query(WordMasterlist.whitelist_count).filter(WordMasterlist.word == word).one()
+#         crud.create_word(word, blacklist_count, whitelist_count) #does create_word override a previous entry?
     
-    if request.form.get('feedback') == 'whitelisted':
-        crud.create_word(word, 0, 0)
+#     if request.form.get('feedback') == 'whitelisted':
+#         crud.create_word(word, 0, 1)
 
 
+
+# # # def create_assoc_table(): #dont think you'd have in server.py
 
 def create_assoc_table():
+    "Creates an association table for today's valid words"
+    word_masterlist_objects = db.session.query(WordMasterlist).all()
+    letter_input_object = db.session.query(LetterInput).filter_by(entry_date=date.today()).first() #is this how i want to do the letters? relies on proper user input...
 
+    for object in word_masterlist_objects:
+        if (letter_input_object.required_letter in object.word) and all(character in letter_input_object.all_letters for character in object.word):
+            letter_input_id = letter_input_object.letter_input_id
+            word_masterlist_id = object.word_masterlist_id
+
+            crud.create_assoc(letter_input_id, word_masterlist_id)
 
 
 
