@@ -1,6 +1,6 @@
 """Server for Spelling Bee Solver app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db, LetterInput, LetterWordAssoc, WordMasterlist #bringing in the classes so i can query them for assoc table creation
 from jinja2 import StrictUndefined
 from datetime import date
@@ -27,10 +27,16 @@ def get_todays_letters():
     required_letter = request.form.get('required-letter') #prob want to make sure all lowercase
 
     letters_record = crud.create_letters(entry_date, all_letters, required_letter) #crud returns a letters record -> setting it equal to a variable tht i can use and pass to the next crud operator
-
     crud.create_assoc_logic(letters_record)
 
-    return 'success' #revisit the message...
+    todays_valid_words = LetterWordAssoc.query.filter_by(letter_input_id=letters_record.letter_input_id).all()
+    dict_for_jsonify = {"words": []}
+    for object in todays_valid_words:
+        dict_for_jsonify["words"].append(object.words_assoc.word)
+    
+    return jsonify(dict_for_jsonify)
+
+    #return 'success'
 
 
 @app.route('/ajax-create-feedback', methods=['POST'])
