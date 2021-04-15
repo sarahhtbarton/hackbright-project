@@ -15,7 +15,6 @@ def create_letters(entry_date, all_letters, required_letter):
     return letters
 
 
-
 def create_word(word, blacklist_count, whitelist_count):
     """Create and return a new word, or mark word as whitelisted/blacklisted."""
     
@@ -29,9 +28,10 @@ def create_word(word, blacklist_count, whitelist_count):
     return word
 
 
-
 def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the foreign keys, not the backref variable
     """Create and return an association."""
+
+    print('crud.py line 36')
 
     assoc = LetterWordAssoc(letter_input_id=letter_input_id,
                             word_masterlist_id=word_masterlist_id)
@@ -41,11 +41,15 @@ def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the fo
 
     return assoc
 
+
 def create_assoc_logic(letters_record): #belongs in crud (anything that does database operations should live in crud)
     """Creates an association table for today's valid words"""
+    
+    print('crud.py line 49')
+    
     word_masterlist_objects = WordMasterlist.query.all()
-    #letter_input_object = db.session.query(LetterInput).filter_by(entry_date=date.today()).first() #is this how i want to do the letters? relies on proper user input...
-    #dont need this ^ because I passed it in as a parameter. Better because it gives me results from the actual input vs heuristics to get the input (.first)
+
+    print('crud.py line 53')
 
     for object in word_masterlist_objects:
         if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
@@ -53,7 +57,8 @@ def create_assoc_logic(letters_record): #belongs in crud (anything that does dat
             word_masterlist_id = object.word_masterlist_id
 
             create_assoc_table(letter_input_id, word_masterlist_id)
-
+    
+    print('crud.py line 62')
 
 
 if __name__ == '__main__':

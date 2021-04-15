@@ -1,7 +1,7 @@
 """Server for Spelling Bee Solver app."""
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
-from model import connect_to_db, LetterInput, LetterWordAssoc, WordMasterlist #bringing in the classes so i can query them for assoc table creation
+from model import connect_to_db, LetterInput, LetterWordAssoc, WordMasterlist
 from jinja2 import StrictUndefined
 from datetime import date
 import crud
@@ -22,21 +22,29 @@ def homepage():
 def get_todays_letters():
     """Creates an entry for today's Spelling Bee letters"""
 
+    print('\n server.py line 25')
+
     entry_date = date.today()
     all_letters = request.form.get('all-letters')
     required_letter = request.form.get('required-letter') #prob want to make sure all lowercase
 
-    letters_record = crud.create_letters(entry_date, all_letters, required_letter) #crud returns a letters record -> setting it equal to a variable tht i can use and pass to the next crud operator
+    letters_record = crud.create_letters(entry_date, all_letters, required_letter)
+    print('server.py line 32')
     crud.create_assoc_logic(letters_record)
+    
+    print('server.py line 35')
 
     todays_valid_words = LetterWordAssoc.query.filter_by(letter_input_id=letters_record.letter_input_id).all()
+
+    print('server.py line 39')
+
     dict_for_jsonify = {"words": []}
     for object in todays_valid_words:
         dict_for_jsonify["words"].append(object.words_assoc.word)
     
-    return jsonify(dict_for_jsonify)
+    print('server.py line 45')
 
-    #return 'success'
+    return jsonify(dict_for_jsonify)
 
 
 @app.route('/ajax-create-feedback', methods=['POST'])
@@ -64,3 +72,4 @@ def get_word_feedback():
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
+    print('EXIT')
