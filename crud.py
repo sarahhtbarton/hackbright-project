@@ -42,8 +42,8 @@ def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the fo
     return assoc
 
 def create_assoc_logic(letters_record): #belongs in crud (anything that does database operations should live in crud)
-    "Creates an association table for today's valid words"
-    word_masterlist_objects = db.session.query(WordMasterlist).all()
+    """Creates an association table for today's valid words"""
+    word_masterlist_objects = WordMasterlist.query.all()
     #letter_input_object = db.session.query(LetterInput).filter_by(entry_date=date.today()).first() #is this how i want to do the letters? relies on proper user input...
     #dont need this ^ because I passed it in as a parameter. Better because it gives me results from the actual input vs heuristics to get the input (.first)
 
