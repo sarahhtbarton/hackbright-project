@@ -22,28 +22,19 @@ def homepage():
 def get_todays_letters():
     """Creates an entry for today's Spelling Bee letters"""
 
-    print('\n server.py line 25')
-
     entry_date = date.today()
     all_letters = request.form.get('all-letters')
     required_letter = request.form.get('required-letter') #prob want to make sure all lowercase
 
     letters_record = crud.create_letters(entry_date, all_letters, required_letter)
-    print('server.py line 32')
     crud.create_assoc_logic(letters_record)
-    
-    print('server.py line 35')
 
     todays_valid_words = LetterWordAssoc.query.filter_by(letter_input_id=letters_record.letter_input_id).all()
-
-    print('server.py line 39')
 
     dict_for_jsonify = {"words": []}
     for object in todays_valid_words:
         dict_for_jsonify["words"].append(object.words_assoc.word)
     
-    print('server.py line 45')
-
     return jsonify(dict_for_jsonify)
 
 
@@ -66,7 +57,6 @@ def get_word_feedback():
         crud.create_word(word, 0, 1)
     
     return 'got feedback'
-
 
 
 if __name__ == '__main__':

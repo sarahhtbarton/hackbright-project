@@ -1,7 +1,7 @@
 """CRUD operations."""
 
 from model import db, LetterInput, LetterWordAssoc, WordMasterlist, connect_to_db
-import re #use regex
+import re
 
 def create_letters(entry_date, all_letters, required_letter):
     """Create and return the Spelling Bee letters for the day."""
@@ -29,10 +29,8 @@ def create_word(word, blacklist_count, whitelist_count):
     return word
 
 
-def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the foreign keys, not the backref variable
+def create_assoc_table(letter_input_id, word_masterlist_id):
     """Create and return an association."""
-
-    print('crud.py line 36')
 
     assoc = LetterWordAssoc(letter_input_id=letter_input_id,
                             word_masterlist_id=word_masterlist_id)
@@ -43,36 +41,22 @@ def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the fo
     return assoc
 
 
-def create_assoc_logic(letters_record): #belongs in crud (anything that does database operations should live in crud)
+def create_assoc_logic(letters_record):
     """Creates an association table for today's valid words"""
     
-    word_masterlist_objects = WordMasterlist.query.all()
+    word_masterlist_objects = WordMasterlist.query.filter(WordMasterlist.word.like(f"%{letters_record.required_letter}%")).all()
+    #Alternative approaches:
+        # make a set of strings -> ask is this sequence in the set. Do this at the very beginning -- make global variable.
+        # define and call function is server.py
+        # update when make changes to master wordlist
+        #if YES, database query to get the primary key that you need later in the function (line 64)
 
-    all_letters = letters_record.all_letters
-    required_letter = letters_record.required_letter
-    pattern = f"[{all_letters}]*{required_letter}+[{all_letters}]*"
+    pattern = f"[{letters_record.all_letters}]*{letters_record.required_letter}+[{letters_record.all_letters}]*"
     compiled = re.compile(pattern)
 
     for object in word_masterlist_objects:
         if compiled.fullmatch(object.word) is not None:
             create_assoc_table(letters_record.letter_input_id, object.word_masterlist_id)
-    
-"""    
-    print('crud.py line 49')
-    
-    word_masterlist_objects = WordMasterlist.query.all()
-
-    print('crud.py line 53')
-
-    for object in word_masterlist_objects:
-        if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
-            letter_input_id = letters_record.letter_input_id
-            word_masterlist_id = object.word_masterlist_id
-
-            create_assoc_table(letter_input_id, word_masterlist_id)
-    
-    print('crud.py line 62')
-"""
 
 
 if __name__ == '__main__':

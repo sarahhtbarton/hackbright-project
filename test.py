@@ -19,8 +19,15 @@ match 1+
 
 
 GROUPING ()
-(abcdef)
+(wiolhnw)
 
 
 WOuld it be:
-[abcdef]*g+
+[wiolhn]*d+
+
+
+###
+
+match_obj = re.findall(r"[wiolhn]*d+[wiolhn]*", )
+#returns a list of all matches
+
