@@ -47,13 +47,14 @@ def create_assoc_logic(letters_record): #belongs in crud (anything that does dat
     """Creates an association table for today's valid words"""
     
     word_masterlist_objects = WordMasterlist.query.all()
+
+    all_letters = letters_record.all_letters
+    required_letter = letters_record.required_letter
+    pattern = f"[{all_letters}]*{required_letter}+[{all_letters}]*"
+    compiled = re.compile(pattern)
+
     for object in word_masterlist_objects:
-        word = object.word
-        all_letters = letters_record.all_letters
-        required_letter = letters_record.required_letter
-        pattern = f"[{all_letters}]*{required_letter}+[{all_letters}]*"
-        
-        if re.fullmatch(pattern, word) is not None:
+        if compiled.fullmatch(object.word) is not None:
             create_assoc_table(letters_record.letter_input_id, object.word_masterlist_id)
     
 """    
