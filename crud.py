@@ -1,6 +1,7 @@
 """CRUD operations."""
 
 from model import db, LetterInput, LetterWordAssoc, WordMasterlist, connect_to_db
+import re #use regex
 
 def create_letters(entry_date, all_letters, required_letter):
     """Create and return the Spelling Bee letters for the day."""
@@ -45,20 +46,35 @@ def create_assoc_table(letter_input_id, word_masterlist_id): #need to use the fo
 def create_assoc_logic(letters_record): #belongs in crud (anything that does database operations should live in crud)
     """Creates an association table for today's valid words"""
     
-    print('crud.py line 49')
-    
     word_masterlist_objects = WordMasterlist.query.all()
-
-    print('crud.py line 53')
+    all_letters = letters_record.all_letters
+    required_letter = letters_record.required_letter
 
     for object in word_masterlist_objects:
-        if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
+        word = object.word
+        pattern = f"[{all_letters}]*{required_letter}+[{all_letters}]*"
+        
+        if re.fullmatch(pattern, word) is not None:
+            word_masterlist_id = word_masterlist_objects.word_masterlist_id
             letter_input_id = letters_record.letter_input_id
-            word_masterlist_id = object.word_masterlist_id
 
             create_assoc_table(letter_input_id, word_masterlist_id)
     
-    print('crud.py line 62')
+    
+    # print('crud.py line 49')
+    
+    # word_masterlist_objects = WordMasterlist.query.all()
+
+    # print('crud.py line 53')
+
+    # for object in word_masterlist_objects:
+    #     if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
+    #         letter_input_id = letters_record.letter_input_id
+    #         word_masterlist_id = object.word_masterlist_id
+
+    #         create_assoc_table(letter_input_id, word_masterlist_id)
+    
+    # print('crud.py line 62')
 
 
 if __name__ == '__main__':
