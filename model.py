@@ -26,7 +26,7 @@ class LetterInput(db.Model):
 
 
 
-class (db.Model):
+class LetterWordAssoc(db.Model):
     """An association table that holds the words for the day's Spelling Bee letters"""
 
     __tablename__ = 'letterword_assoc'
