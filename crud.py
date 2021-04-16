@@ -47,34 +47,31 @@ def create_assoc_logic(letters_record): #belongs in crud (anything that does dat
     """Creates an association table for today's valid words"""
     
     word_masterlist_objects = WordMasterlist.query.all()
-    all_letters = letters_record.all_letters
-    required_letter = letters_record.required_letter
-
     for object in word_masterlist_objects:
         word = object.word
+        all_letters = letters_record.all_letters
+        required_letter = letters_record.required_letter
         pattern = f"[{all_letters}]*{required_letter}+[{all_letters}]*"
         
         if re.fullmatch(pattern, word) is not None:
-            word_masterlist_id = word_masterlist_objects.word_masterlist_id
+            create_assoc_table(letters_record.letter_input_id, object.word_masterlist_id)
+    
+"""    
+    print('crud.py line 49')
+    
+    word_masterlist_objects = WordMasterlist.query.all()
+
+    print('crud.py line 53')
+
+    for object in word_masterlist_objects:
+        if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
             letter_input_id = letters_record.letter_input_id
+            word_masterlist_id = object.word_masterlist_id
 
             create_assoc_table(letter_input_id, word_masterlist_id)
     
-    
-    # print('crud.py line 49')
-    
-    # word_masterlist_objects = WordMasterlist.query.all()
-
-    # print('crud.py line 53')
-
-    # for object in word_masterlist_objects:
-    #     if (letters_record.required_letter in object.word) and all(character in letters_record.all_letters for character in object.word):
-    #         letter_input_id = letters_record.letter_input_id
-    #         word_masterlist_id = object.word_masterlist_id
-
-    #         create_assoc_table(letter_input_id, word_masterlist_id)
-    
-    # print('crud.py line 62')
+    print('crud.py line 62')
+"""
 
 
 if __name__ == '__main__':
