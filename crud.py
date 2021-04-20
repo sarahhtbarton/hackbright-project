@@ -44,7 +44,7 @@ def create_assoc_table(letter_input_id, word_masterlist_id):
 def create_assoc_logic(letters_record):
     """Creates an association table for today's valid words"""
     
-    pattern = f"^[{letters_record.all_letters}]*{letters_record.required_letter}+[{letters_record.all_letters}]*$"
+    pattern = f"^[{letters_record.all_letters}]*{letters_record.required_letter}+[{letters_record.all_letters}]*$" #used the ^ and $ to mimic .fullmatch()
     word_masterlist_objects = WordMasterlist.query.filter(WordMasterlist.word.op('~')(f"{pattern}")).all()
 
     for object in word_masterlist_objects:
