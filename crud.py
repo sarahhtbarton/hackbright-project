@@ -28,6 +28,12 @@ def create_word(word, blacklist_count, whitelist_count):
 
     return word
 
+def update_blacklist_count(word):
+    """Increments an existing word's blacklist count by one"""
+    word_object = db.session.query(WordMasterlist).filter(WordMasterlist.word == word).one()
+    word_object.blacklist_count += 1
+    db.session.commit()
+
 
 def create_assoc_table(letter_input_id, word_masterlist_id):
     """Create and return an association."""

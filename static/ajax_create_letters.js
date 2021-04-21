@@ -1,7 +1,7 @@
 
 $('#get-letters').on('submit', (evt) => {
     evt.preventDefault();
-    alert("We've received your submission of today's letters. It takes about 2 minutes to for the solutions to show up, so take a little stretch break and check back soon.");
+    // alert("We've received your submission of today's letters. It takes about 2 minutes to for the solutions to show up, so take a little stretch break and check back soon.");
 
     const formData = {
         "all-letters": $('[name="all-letters"]').val(),

@@ -30,7 +30,6 @@ def get_todays_letters():
     crud.create_assoc_logic(letters_record)
 
     todays_valid_words = LetterWordAssoc.query.filter_by(letter_input_id=letters_record.letter_input_id).all()
-
     dict_for_jsonify = {"words": []}
     for object in todays_valid_words:
         dict_for_jsonify["words"].append(object.words_assoc.word)
@@ -46,12 +45,7 @@ def get_word_feedback():
     feedback = request.form.get('feedback')
 
     if feedback == 'blacklisted':
-        #is this right? test it out
-        blacklist_count = db.session.query(WordMasterlist).filter(WordMasterlist.word == word).one()
-        blacklist_count += 1
-        # #do you need the next two lines or is the blacklist_count updated now?
-        # whitelist_count = db.session.query(WordMasterlist.whitelist_count).filter(WordMasterlist.word == word).one()
-        # crud.create_word(word, blacklist_count, whitelist_count) #does create_word override a previous entry?
+        crud.update_blacklist_count(word)
     
     if feedback == 'whitelisted':
         crud.create_word(word, 0, 1)

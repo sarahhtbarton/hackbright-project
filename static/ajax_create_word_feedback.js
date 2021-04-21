@@ -4,7 +4,7 @@ $('#get-feedback').on('submit', (evt) => {
 
     const formData = {
         "word-feedback": $('[name="word-feedback"]').val(),
-        "feedback": $('[name="feedback"]').val()
+        "feedback": $('[name="feedback"]:checked').val()
     };
 
     $.post('/ajax-create-feedback', formData, (res) => {
