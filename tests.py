@@ -1,5 +1,6 @@
 from server import app
 from unittest import TestCase
+from model import connect_to_db, db #for database tests...
 
 class SolverUnitTests(TestCase):
     """ Unit Tests -- checks function logic."""
@@ -29,6 +30,10 @@ class SolverIntegrationTests(TestCase):
         result = client.post('/ajax-create-letters', data={'required-letter': 'l', 'all-letters': 'ncweaol'})
         self.assertIn(b'l is the twelth letter in the alphabet', result.data) #`data` is a dictionary of form key/value pairs. `result.data` is the html response string
 
+class SolverFlaskDatabaseTests(TestCase):
+    """Flask tests that use the database."""
+
+    def
 
 if __name__ == "__main__": # If called like a script, run our tests
     unittest.main()
