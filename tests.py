@@ -1,12 +1,18 @@
 from server import app
 from unittest import TestCase
 from model import connect_to_db, db #for database tests...
+import crud
+from datetime import date
 
-class SolverUnitTests(TestCase):
-    """ Unit Tests -- checks function logic."""
+# class SolverUnitTests(TestCase):
+#     """ Unit Tests -- checks pure function logic -- needs to not touch anything else."""
 
-    def test_    (self):
-        self.assert
+#     def test_regex(self):
+#         """Tests REGEX logic"""
+#         letters_record = LetterInput.query.filter(LetterInput.all_letters == 'zzzzzzz', LetterInput.required_letter == 'z').one()
+#         test_assoc = crud.create_assoc_logic(letters_record) 
+#         assert test_assoc.word == 'zzzzzzzzzzzzzzzzzzz'
+#         # the return is create_assoc_table return -- assoc
 
 
 class SolverIntegrationTests(TestCase):
@@ -33,7 +39,26 @@ class SolverIntegrationTests(TestCase):
 class SolverFlaskDatabaseTests(TestCase):
     """Flask tests that use the database."""
 
-    def
+    letters_record = crud.create_letters(date.today(), 'azzzzzz', 'z') #can i give it an object directly instead of creating one? Yes -- query it -- query for the letters
+    test_case = crud.create_assoc_logic(letters_record)
+
+    def database_tests():
+        """Tests database relationships"""
+        test = [test_case.word_masterlist_id for test_case in test_case.association]
+        assert test == [367518]
+    
+    def database_relationship_test():
+        assoc_object = test_case.association
+        assert assoc_object.words_assoc.word == 'zzzzzzzzzzzzzzzzzzz'
+    
+    def delete_record():
+        """Deletes test data"""
+        LetterWordAssoc.query.filter(LetterWordAssoc.letterword_id == test_case.letterword_id).delete()
+        db.session.commit()
+        #do the same with the letters record. 
+        #make sure they're deleted-- call letter_record and test_case, make sure nothing shows up
+
+
 
 if __name__ == "__main__": # If called like a script, run our tests
     unittest.main()
