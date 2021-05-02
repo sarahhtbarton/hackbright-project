@@ -30,9 +30,12 @@ def get_todays_letters():
     crud.create_assoc_logic(letters_record)
 
     todays_valid_words = LetterWordAssoc.query.filter_by(letter_input_id=letters_record.letter_input_id).all()
-    dict_for_jsonify = {"words": []}
+    dict_for_jsonify = {}
     for object in todays_valid_words:
-        dict_for_jsonify["words"].append(object.words_assoc.word)
+        dict_for_jsonify[object.words_assoc.word] = {}
+        dict_for_jsonify[object.words_assoc.word]['blacklist_count'] = object.words_assoc.blacklist_count
+        dict_for_jsonify[object.words_assoc.word]['whitelist_count'] = object.words_assoc.whitelist_count
+        dict_for_jsonify[object.words_assoc.word]['pentagram'] = object.pentagram
     
     return jsonify(dict_for_jsonify)
 

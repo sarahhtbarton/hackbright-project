@@ -11,11 +11,13 @@ $('#get-letters').on('submit', (evt) => {
     $.post('/ajax-create-letters', formData, (res) => {
         console.log(res);
 
-        for (word in res) {
+        for (word in res) { // should probably make one div, and then add classes to it depending on what conditions it meets...
             if (res[word]['blacklist_count'] > 0) {
                 $('#append-words-here').append(`<div class="blacklisted">${word}</div>`);
             } else if (res[word]['whitelistlist_count'] > 0) {
                 $('#append-words-here').append(`<div class="whitelisted">${word}</div>`);
+            } else if (res[word]['pentagram'] === true) {
+                $('#append-words-here').append(`<div class="pentagram">${word}</div>`);
             } else {
                 $('#append-words-here').append(`<div>${word}</div>`);
             }

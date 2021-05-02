@@ -37,13 +37,14 @@ class LetterWordAssoc(db.Model):
                                 db.ForeignKey('letter_input.letter_input_id'))
     word_masterlist_id = db.Column(db.Integer,
                                    db.ForeignKey('word_masterlist.word_masterlist_id'))
+    pentagram = db.Column(db.Boolean)
     
     letters_assoc = db.relationship('LetterInput', backref='association')
     words_assoc = db.relationship('WordMasterlist', backref='association')
     
     def __repr__(self):
         """Show info about LetterWordAssoc"""
-        return f'<LetterWordAssoc letterword_id={self.letterword_id} letter_input_id={self.letter_input_id} word_masterlist_id={self.word_masterlist_id}>'
+        return f'<LetterWordAssoc letterword_id={self.letterword_id} letter_input_id={self.letter_input_id} word_masterlist_id={self.word_masterlist_id} pentagram={self.pentagram}>'
 
 
 class WordMasterlist(db.Model):

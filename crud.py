@@ -39,11 +39,12 @@ def update_blacklist_count(word):
     return word_object
 
 
-def create_assoc_table(letter_input_id, word_masterlist_id):
+def create_assoc_table(letter_input_id, word_masterlist_id, pentagram):
     """Create and return an association."""
 
     assoc = LetterWordAssoc(letter_input_id=letter_input_id,
-                            word_masterlist_id=word_masterlist_id)
+                            word_masterlist_id=word_masterlist_id,
+                            pentagram=pentagram)
     
     db.session.add(assoc)
     db.session.commit()
@@ -58,7 +59,8 @@ def create_assoc_logic(letters_record):
     word_masterlist_objects = WordMasterlist.query.filter(WordMasterlist.word.op('~')(f"{pattern}")).all()
 
     for object in word_masterlist_objects:
-        create_assoc_table(letters_record.letter_input_id, object.word_masterlist_id)
+        pentagram = all(char in object.word for char in letters_record.all_letters)
+        create_assoc_table(letters_record.letter_input_id, object.word_masterlist_id, pentagram)
 
 
 if __name__ == '__main__':

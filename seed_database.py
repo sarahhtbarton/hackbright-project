@@ -9,7 +9,7 @@ import model
 import server
 
 os.system('dropdb solver') #i'm going to want to get rid of this eventually? Cause ill want changes to WordMasterlist to persist...
-os.system('createdb solver')
+os.system('createdb solver') 
 
 model.connect_to_db(server.app)
 model.db.create_all()
