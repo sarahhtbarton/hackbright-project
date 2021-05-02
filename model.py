@@ -25,7 +25,6 @@ class LetterInput(db.Model):
         return f'<LetterInput letter_input_id={self.letter_input_id} entry_date={self.entry_date} all_letters={self.all_letters} required_letter={self.required_letter}>'
 
 
-
 class LetterWordAssoc(db.Model):
     """An association table that holds the words for the day's Spelling Bee letters"""
 
@@ -45,7 +44,6 @@ class LetterWordAssoc(db.Model):
     def __repr__(self):
         """Show info about LetterWordAssoc"""
         return f'<LetterWordAssoc letterword_id={self.letterword_id} letter_input_id={self.letter_input_id} word_masterlist_id={self.word_masterlist_id}>'
-
 
 
 class WordMasterlist(db.Model):
@@ -68,7 +66,6 @@ class WordMasterlist(db.Model):
     def __repr__(self):
         """Show info about WordMasterlist"""
         return f'<WordMasterlist word_masterlist_id={self.word_masterlist_id} word={self.word} blacklist_count={self.blacklist_count} whitelist_count={self.whitelist_count}>'
-
 
 
 def connect_to_db(flask_app,
