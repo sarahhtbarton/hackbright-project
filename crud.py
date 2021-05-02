@@ -3,6 +3,7 @@
 from model import db, LetterInput, LetterWordAssoc, WordMasterlist, connect_to_db
 import re
 
+
 def create_letters(entry_date, all_letters, required_letter):
     """Create and return the Spelling Bee letters for the day."""
 
@@ -28,11 +29,14 @@ def create_word(word, blacklist_count, whitelist_count):
 
     return word
 
+
 def update_blacklist_count(word):
     """Increments an existing word's blacklist count by one"""
     word_object = db.session.query(WordMasterlist).filter(WordMasterlist.word == word).one()
     word_object.blacklist_count += 1
     db.session.commit()
+
+    return word_object
 
 
 def create_assoc_table(letter_input_id, word_masterlist_id):
@@ -50,7 +54,7 @@ def create_assoc_table(letter_input_id, word_masterlist_id):
 def create_assoc_logic(letters_record):
     """Creates an association table for today's valid words"""
     
-    pattern = f"^[{letters_record.all_letters}]*{letters_record.required_letter}+[{letters_record.all_letters}]*$" #used the ^ and $ to mimic .fullmatch()
+    pattern = f"^[{letters_record.all_letters}]*{letters_record.required_letter}+[{letters_record.all_letters}]*$"
     word_masterlist_objects = WordMasterlist.query.filter(WordMasterlist.word.op('~')(f"{pattern}")).all()
 
     for object in word_masterlist_objects:
