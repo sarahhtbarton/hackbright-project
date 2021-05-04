@@ -1,3 +1,7 @@
 #append-words-here {
     columns: 5 auto;
   }
+
+  .pentagram {
+    background-color: #FFFF00;
+  }

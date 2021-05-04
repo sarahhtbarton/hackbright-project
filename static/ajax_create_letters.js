@@ -23,4 +23,7 @@ $('#get-letters').on('submit', (evt) => {
             }
         }
     });
+
+    $("#get-letters")[0].reset();
+    
 });
