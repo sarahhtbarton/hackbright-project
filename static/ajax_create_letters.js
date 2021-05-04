@@ -3,6 +3,8 @@
 $('#get-letters').on('submit', (evt) => {
     evt.preventDefault();
 
+    $('#append-words-here').html(""); //clears out the old words
+
     const formData = {
         "all-letters": $('[name="all-letters"]').val(),
         "required-letter": $('[name="required-letter"]').val()
@@ -17,13 +19,13 @@ $('#get-letters').on('submit', (evt) => {
             } else if (res[word]['whitelistlist_count'] > 0) {
                 $('#append-words-here').append(`<div class="whitelisted">${word}</div>`);
             } else if (res[word]['pentagram'] === true) {
-                $('#append-words-here').append(`<div class="pentagram">${word}</div>`);
+                $('#append-words-here').append(`<div><mark>${word}</mark></div>`);
             } else {
                 $('#append-words-here').append(`<div>${word}</div>`);
             }
         }
     });
 
-    $("#get-letters")[0].reset();
-    
+    $("#get-letters")[0].reset(); //clears the form
+
 });
