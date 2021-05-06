@@ -16,7 +16,6 @@
     <div class="py-3"></div>
     <div class="row">
       <div class="col-4">
-        <!-- <div class="py-3"></div> -->
         <h2>Input Today's Letters</h2>
         <form action="/ajax-create-letters" id='get-letters'>
           <div class="form-group">
@@ -35,19 +34,8 @@
             <button type="submit" class="btn btn-dark">Submit</button>
           </div>
         </form>
-      </div>
-      <div class='col-1'></div>
-      <div class="col-7">
-        <div id="append-words-here">
-          <div id="word-columns"></div>
-        </div>
-      </div>
-    </div>
-    <div class="py-4"></div>
-    <div class="row">
-      <div class="col-4">
-        <!-- <div class="py-3"></div> -->
-        <h2>Word Feedback</h2> <!-- Move up into the other column????????????????????????????/...-->
+        <div class="py-4"></div>
+        <h2>Word Feedback</h2>
         <form id="get-feedback"> <!-- should this have an action?...-->
           <div class="form-group">
             <label class="col-form-label-lg">Blacklist an unaccepted word.<br>Whitelist a word Solver missed.</label>
@@ -67,7 +55,15 @@
           </div>
         </form>
       </div>
-    </div>  
+      <div class='col-1'></div>
+      <div class="col-7">
+        <div class="py-3"></div>
+        <div id="append-words-here">
+          <div id="word-columns"></div>
+          <div id="key"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="/static/ajax_create_letters.js"></script>
   <script src="/static/ajax_create_word_feedback.js"></script>
