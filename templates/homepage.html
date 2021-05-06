@@ -6,46 +6,52 @@
 
 {% block body %}
   <div class="container">
-    <div class="py-5"></div>
+    <div id="bee-image"></div>
+    <div class="py-3"></div>
     <div class="row">
       <div class="col">
         <h1>Welcome to Spelling Bee Solver</h1>
       </div>
     </div>
-    <div class="py-5"></div>
+    <div class="py-3"></div>
     <div class="row">
-      <div class="col">
-        <h2>Input today's letters here</h2>
+      <div class="col-4">
+        <!-- <div class="py-3"></div> -->
+        <h2>Input Today's Letters</h2>
         <form action="/ajax-create-letters" id='get-letters'>
           <div class="form-group">
             <label class="col-form-label-lg">What are the 7 letters for today?</label>
-            <input class="form-control form-control-lg" type="text" name="all-letters" placeholder="ex: aygfrit" maxlength="7" required>
-            <small id="passwordHelpBlock" class="form-text text-muted">Please enter all numbers lowercase, no spaces or commas. Include the required letter. Order doesn't matter.</small>
+            <input class="form-control" type="text" name="all-letters" placeholder="ex: aygfrit" maxlength="7" required>
+            <small id="passwordHelpBlock" class="form-text text-muted">Please enter all letters lowercase, no spaces or commas. Include the required letter. Order doesn't matter.</small>
           </div>
+          <div class="py-2"></div>
           <div class="form-group">
             <label class="col-form-label-lg">Which letter is required?</label>
-            <input class="form-control form-control-lg" type="text" name="required-letter" placeholder="ex: t" maxlength="1" required>
+            <input class="form-control" type="text" name="required-letter" placeholder="ex: t" maxlength="1" required>
             <small id="passwordHelpBlock" class="form-text text-muted">Please enter the one required letter, lowercase.</small>
           </div>
+          <div class="py-1"></div>
           <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
           </div>
         </form>
       </div>
-    </div>
-    <div class="py-5"></div>
-    <div class="row">
-      <div class="col">
-        <div id="append-words-here"></div>
+      <div class='col-1'></div>
+      <div class="col-7">
+        <div id="append-words-here">
+          <div id="word-columns"></div>
+        </div>
       </div>
     </div>
+    <div class="py-4"></div>
     <div class="row">
-      <div class="col">
-        <h2>Word Feedback</h2> <!-- Revisit the copy...-->
+      <div class="col-4">
+        <!-- <div class="py-3"></div> -->
+        <h2>Word Feedback</h2> <!-- Move up into the other column????????????????????????????/...-->
         <form id="get-feedback"> <!-- should this have an action?...-->
           <div class="form-group">
-            <label class="col-form-label-lg">Did Solver miss any words today? Did Solver surface words Spelling Bee didn't accept?</label>
-            <input class="form-control form-control-lg" type="text" name="word-feedback" required>
+            <label class="col-form-label-lg">Blacklist an unaccepted word.<br>Whitelist a word Solver missed.</label>
+            <input class="form-control" type="text" name="word-feedback" required>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="feedback" value="blacklisted" required>
@@ -55,8 +61,9 @@
             <input class="form-check-input" type="radio" name="feedback" value="whitelisted">
             <label class="form-check-label">Whitelist</label> 
           </div>
+          <div class="py-1"></div>
           <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
           </div>
         </form>
       </div>
