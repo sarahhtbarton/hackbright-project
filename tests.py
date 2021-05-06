@@ -19,7 +19,7 @@ class SolverIntegrationTests(unittest.TestCase):
     def test_get_request(self):
         """“Does this route function return the right HTML?”"""
         result = self.client.get('/')
-        self.assertIn(b'<h1>Welcome to Spelling Bee Solver</h1>', result.data) #revisit if change the copy
+        self.assertIn(b'<h1>Welcome to Spelling Bee Solver</h1>', result.data)
     
     def test_post_form(self):
         result = self.client.post('/ajax-create-letters', data={'required-letter': 'l', 'all-letters': 'ncweaol'})

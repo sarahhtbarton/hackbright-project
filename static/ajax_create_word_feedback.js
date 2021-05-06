@@ -1,3 +1,4 @@
+// "use strict";
 
 $('#get-feedback').on('submit', (evt) => {
     evt.preventDefault();
