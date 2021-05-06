@@ -2,8 +2,6 @@
 
 import os
 import json
-from datetime import date
-
 import crud
 import model
 import server
