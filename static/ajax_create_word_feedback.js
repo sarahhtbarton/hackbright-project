@@ -9,6 +9,6 @@ $('#get-feedback').on('submit', (evt) => {
 
     $.post('/ajax-create-feedback', formData, (res) => {
         console.log(res);
-        alert('Thanks for your feedback!');
+        $('.alert').show();
     });
 });

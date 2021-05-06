@@ -9,7 +9,6 @@ body {
   }
 
 #append-words-here {
-  /* font-size: smaller; */
   backdrop-filter: blur(100px);
 }
 
@@ -35,26 +34,3 @@ h1, h2, .col-form-label-lg, .form-check-label {
   padding-top: 2%;
   padding-bottom: 1%;
 }
-
-
-/* #bee-image {
-    content:url(/static/images/green-cropped2.png);
-    width: 300px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-body {
-    padding-left: 150px;
-    background: linear-gradient(to right, #157B3C 300px, white 0);
-  }
-
-input[type=text] {
-    border-color: #157B3C;
-  }
-
-.btn {
-    background-color: #157B3C;
-    border-color: yellow;
-  } */
