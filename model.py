@@ -1,7 +1,7 @@
 """ Models for Spelling Bee Solver app. """
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import date
 
 db = SQLAlchemy()
 
