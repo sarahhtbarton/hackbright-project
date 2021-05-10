@@ -17,4 +17,5 @@ with open('data/words.txt') as word_file:
     words = word_file.read().split()
 
 for word in words:
-    crud.create_word(word, 0, 0)
+    if len(word) > 3:
+        crud.create_word(word, 0, 0)
