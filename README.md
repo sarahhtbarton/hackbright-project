@@ -13,9 +13,9 @@ Spelling Bee Solver is a full stack, single page web app that generates and disp
 - **Learn more about the developer:** http://linkedin.com/in/SarahHTBarton  
 
 ### Technology
-**Languages:** Python, JavaScript (AJAX, JSON), HTML, CSS, SQL  
-**Frameworks & Libraries:** Flask, jQuery, Bootstrap, Jinja, SQLAlchemy ORM  
-**Database & Industry Tools:** PostgreSQL, Git, GitHub, Command Line  
+...**Languages:** Python, JavaScript (AJAX, JSON), HTML, CSS, SQL  
+...**Frameworks & Libraries:** Flask, jQuery, Bootstrap, Jinja, SQLAlchemy ORM  
+...**Database & Industry Tools:** PostgreSQL, Git, GitHub, Command Line  
 
 # Table of Contents
 - [About Sarah](#about)
