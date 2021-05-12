@@ -2,7 +2,7 @@
 <img src="/static/images/homepage.png" align="right" />  
 
 ***  
-
+<br>
 # Overview
 Spelling Bee Solver is a full stack, single page web app that generates and displays the solutions to a daily NYTimes game called Spelling Bee. The app simply asks users to input the letters for the day's game, then hit submit. What they get in return is a list of all the words for the day’s game, with some extra queues about certain word attributes. Users are also able to give feedback on words, blacklisting them if the Spelling Bee game does not accept them, or whitelisting words to add them to the Solver database.
 
@@ -13,9 +13,9 @@ Spelling Bee Solver is a full stack, single page web app that generates and disp
 - **Learn more about the developer:** http://linkedin.com/in/SarahHTBarton  
 
 ### Technology
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Languages:** Python, JavaScript (AJAX, JSON), HTML, CSS, SQL  
-...**Frameworks & Libraries:** Flask, jQuery, Bootstrap, Jinja, SQLAlchemy ORM  
-...**Database & Industry Tools:** PostgreSQL, Git, GitHub, Command Line  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Languages:** Python, JavaScript (AJAX, JSON), HTML, CSS, SQL  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Frameworks & Libraries:** Flask, jQuery, Bootstrap, Jinja, SQLAlchemy ORM  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Database & Industry Tools:** PostgreSQL, Git, GitHub, Command Line  
 
 # Table of Contents
 - [About Sarah](#about)
