@@ -17,8 +17,8 @@ $('#get-letters').on('submit', (evt) => {
         for (word in res) {
             if (res[word]['blacklist_count'] > 0) {
                 $('#word-columns').append(`<div class="blacklisted">${word}</div>`);
-            } else if (res[word]['whitelistlist_count'] > 0) {
-                $('#word-columns').append(`<div class="whitelisted">${word}</div>`);
+            } else if (res[word]['whitelist_count'] > 0) {
+                $('#word-columns').append(`<div class="whitelisted">${word}*</div>`);
             } else if (res[word]['pentagram'] === true) {
                 $('#word-columns').append(`<div><mark>${word}</mark></div>`);
             } else {
