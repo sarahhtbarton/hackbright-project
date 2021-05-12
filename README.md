@@ -1,6 +1,5 @@
-<img src="/static/images/homepage.png" align="right" />
-
 # Spelling Bee Solver
+<img src="/static/images/homepage.png" align="right" />
 Spelling Bee Solver is a full stack web app that displays the solutions to a daily NYTimes game called Spelling Bee. Solver looks simple, but packs a lot of punch in the back-end. The app simply asks users to input the letters for the day's game, then hit submit. What they get in return is a list of all the words for the day’s game, with some extra queues about certain word attributes.
 
 **Deployed App:** http://54.147.146.226/  
