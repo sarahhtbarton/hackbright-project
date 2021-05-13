@@ -1,5 +1,5 @@
 # Spelling Bee Solver
-<img src="/static/images/homepage.png" align="right" />  
+<img src="/static/images/homepage.png">  
 
 ***  
 
@@ -8,10 +8,10 @@
 Spelling Bee Solver is a full stack, single page web app that generates and displays the solutions to a daily NYTimes game called Spelling Bee. The app simply asks users to input the letters for the day's game, then hit submit. What they get in return is a list of all the words for the day’s game, with some extra queues about certain word attributes. Users are also able to give feedback on words, blacklisting them if the Spelling Bee game does not accept them, or whitelisting words to add them to the Solver database.
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Deployed App:** http://54.147.146.226/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Demo Video:** https://youtu.be/ebkL7hSwMUs  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GitHub URL:** https://github.com/sarahhtbarton/hackbright-project  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Learn more about the developer:** http://linkedin.com/in/SarahHTBarton  
+**Deployed App:** http://54.147.146.226/  
+**Demo Video:** https://youtu.be/ebkL7hSwMUs  
+**GitHub URL:** https://github.com/sarahhtbarton/hackbright-project  
+**Learn more about the developer:** http://linkedin.com/in/SarahHTBarton  
 
 ### Technology
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Languages:** Python, JavaScript (AJAX, JSON), HTML, CSS, SQL  
@@ -30,6 +30,39 @@ Throughout her career, Sarah has reengineer manual processes into automated and 
 ## <a name="features"></a>Features
 
 ## <a name="installation"></a>Installation
+To run Spelling Bee Solver on your local machine:
+
+Clone this repo:
+```
+https://github.com/sarahhtbarton/hackbright-project.git
+```
+
+Create and activate a virtual environment inside your Solver directory:
+```
+virtualenv env (Mac OS)
+virtualenv env --always-copy (Windows OS)
+source env/bin/activate
+```
+
+Install the dependencies:
+```
+pip3 install -r requirements.txt
+```
+
+Set up the database:
+
+```
+createdb solver
+python3 seed.py
+```
+
+Run the app:
+
+```
+python3 server.py
+```
+
+You can now navigate to 'localhost:5000/' to access Spelling Bee Solver.
 
 ## <a name="references"></a>References
 [NYTimes Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee)
