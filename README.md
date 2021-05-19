@@ -29,12 +29,12 @@ Throughout her career, Sarah has reengineer manual processes into automated and 
 
 ## <a name="features"></a>Features
 #### Input Letters from Today's Spelling Bee Game and See the Solutions
+<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-1.jpeg" align="right" style="max-width:50%;">
 When a user navigates to Solver, they encounter a form that asks for the 7 letters of the day, and which letter is required. Once they hit submit, a JavaScript event listener grabs the data from the form and sends it to the server as a post request. The server then creates an entry in the letter_input table that contains the letters from the form. After, a regular expression is called and finds all the words that can be made up from the letters. As the regex pattern finds each word, the word is added to another table called letterword_assoc. What you end up with is a table that is now populated with all the valid word solutions for today’s game. SQLAlchemy retrieves the records from the letterword_assoc table, and uses the relationships with other tables to pull in the word, if it's a pentagram, and if it has been whitelisted or blacklisted. Finally, JAX executes the callback function, which appends the words to a div in the HTML, where CSS styles it to highlight certain word attributes.
-<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-1.jpeg" align="right" style="max-width:70%;">
 
 #### Give Feedback on Words in Today's Solutions
+<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-2.jpeg" align="right" style="max-width:50%;">
 Users also have the ability to give feedback on words and update the Solver database. This feature allows users to “blacklist” words that Solver returned but that are not accepted by Spelling Bee, or “whitelist” words that Spelling Bee accepts but that Solver did not return. Next time, blacklisted words will appear struckthrough to indicate that they might not be accepted by Spelling Bee, and whitelisted words will have an asterix to indicate that a user has added them to the Solver database.
-<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-2.jpeg" align="right" style="max-width:70%;">
 
 ## <a name="installation"></a>Installation
 To run Spelling Bee Solver on your local machine:
