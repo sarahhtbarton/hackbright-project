@@ -29,7 +29,7 @@ Throughout her career, Sarah has reengineer manual processes into automated and 
 
 ## <a name="features"></a>Features
 #### Input Letters from Today's Spelling Bee Game and See the Solutions
-<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-1.jpeg" align="right" style="width:50%;">
+<img src="https://github.com/sarahhtbarton/hackbright-project/blob/master/static/images/readme-feature-1.jpeg" align="right" width="50%">
 When a user navigates to Solver, they encounter a form that asks for the 7 letters of the day, and which letter is required. Once they hit submit, a JavaScript event listener grabs the data from the form and sends it to the server as a post request. The server then creates an entry in the letter_input table that contains the letters from the form. After, a regular expression is called and finds all the words that can be made up from the letters. As the regex pattern finds each word, the word is added to another table called letterword_assoc. What you end up with is a table that is now populated with all the valid word solutions for today’s game. SQLAlchemy retrieves the records from the letterword_assoc table, and uses the relationships with other tables to pull in the word, if it's a pentagram, and if it has been whitelisted or blacklisted. Finally, JAX executes the callback function, which appends the words to a div in the HTML, where CSS styles it to highlight certain word attributes.
 
 #### Give Feedback on Words in Today's Solutions
