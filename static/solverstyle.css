@@ -9,25 +9,32 @@ body {
   }
 
 #append-words-here {
-  backdrop-filter: blur(100px);
+  backdrop-filter: blur(80px);
 }
 
 #word-columns {
   font-size: large;
-  columns: 5 auto;
+  columns: 4 auto;
 }
 
 .blacklisted {
   text-decoration-line: line-through;
 }
 
-h1 {
+h3 {
   text-align: center;
 }
 
-h1, h2, .col-form-label-lg, .form-check-label {
+h3, h5, .col-form-label, .form-check-label {
   font-family: 'Quando', serif;
+}
+
+h5, .col-form-label, .form-check-label {
   backdrop-filter: blur(100px);
+}
+
+.form-check-label {
+  font-size: smaller;
 }
 
 .form-check {

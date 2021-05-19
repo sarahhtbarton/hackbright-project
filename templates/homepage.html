@@ -10,22 +10,22 @@
     <div class="py-3"></div>
     <div class="row">
       <div class="col">
-        <h1>Welcome to Spelling Bee Solver</h1>
+        <h3>Welcome to Spelling Bee Solver</h3>
       </div>
     </div>
     <div class="py-3"></div>
-    <div class="row">
+    <div class="row px-5">
       <div class="col-4">
-        <h2>Input Today's Letters</h2>
+        <h5>Input Today's Letters</h5>
         <form action="/ajax-create-letters" id='get-letters'>
           <div class="form-group">
-            <label class="col-form-label-lg">What are the 7 letters for today?</label>
+            <label class="col-form-label">What are the 7 letters for today?</label>
             <input class="form-control" type="text" name="all-letters" placeholder="ex: aygfrit" maxlength="7" required>
             <small id="passwordHelpBlock" class="form-text text-muted">Please enter all letters lowercase, no spaces or commas. Include the required letter. Order doesn't matter.</small>
           </div>
           <div class="py-2"></div>
           <div class="form-group">
-            <label class="col-form-label-lg">Which letter is required?</label>
+            <label class="col-form-label">Which letter is required?</label>
             <input class="form-control" type="text" name="required-letter" placeholder="ex: t" maxlength="1" required>
             <small id="passwordHelpBlock" class="form-text text-muted">Please enter the one required letter, lowercase.</small>
           </div>
@@ -35,10 +35,10 @@
           </div>
         </form>
         <div class="py-4"></div>
-        <h2>Word Feedback</h2>
+        <h5>Word Feedback</h5>
         <form id="get-feedback"> <!-- should this have an action?...-->
           <div class="form-group">
-            <label class="col-form-label-lg">Blacklist an unaccepted word.<br>Whitelist a word Solver missed.</label>
+            <label class="col-form-label">Blacklist an unaccepted word.<br>Whitelist a word Solver missed.</label>
             <input class="form-control" type="text" name="word-feedback" required>
           </div>
           <div class="form-check form-check-inline">
