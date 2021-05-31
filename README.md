@@ -25,7 +25,7 @@ Spelling Bee Solver is a full stack, single page web app that generates and disp
 - [References](#references)
 
 ## <a name="about"></a>About the Developer
-Throughout her career, Sarah has reengineer manual processes into automated and scaled solutions. During her time in finance, this took the form of automating quarterly reporting using VBA and macros. At Amazon, Sarah paired VBA with SQL to build a tool that automated a seven step manual workflow. Most recently at Dropbox, Sarah led her team to build an automatic PowerPoint deck generator that saved the sales organization ~500 hours a quarter. Till recently, Sarah thought that these interests process improvement meant a career in Operations. At Dropbox, however, she worked closely with developers on internal tooling and learned a better word for the type of work she loves: software engineering.
+Throughout her career, Sarah has reengineer manual processes into automated and scaled solutions. During her time in finance, this took the form of automating quarterly reporting using VBA and macros. At Amazon, Sarah paired VBA with SQL to build a tool that automated a seven step manual workflow. Most recently at Dropbox, Sarah led her team to build an automatic PowerPoint deck generator that saved the sales organization ~500 hours a quarter. Till recently, Sarah thought that these interests in process improvement meant a career in Operations. At Dropbox, however, she worked closely with developers on internal tooling and learned a better word for the type of work she loves: software engineering.
 
 ## <a name="features"></a>Features
 #### Input Letters from Today's Spelling Bee Game and See the Solutions
